@@ -1,10 +1,10 @@
 function NewGame() {
 
-    var A = ["LOVE", "15", "30", "45"];
-    var B = ["LOVE", "15", "30", "45"];
+    var A = ["LOVE", "15", "30", "40"];
+    var B = ["LOVE", "15", "30", "40"];
 
     this.reset = () => {
-        return "0-0"
+        return A[this.Pa=0] + "-" + B[this.Pb=0];
     }
 
 
@@ -23,7 +23,12 @@ function NewGame() {
     }
 
     this.eco = () => {
-        return A[this.Pa] + "-" + B[this.Pb];
+       if(this.Pa == 3 && this.Pb == 3){
+            return "deuce"
+        }
+        else{
+            return A[this.Pa] + "-" + B[this.Pb];
+            }
     }
 }
 
@@ -51,8 +56,21 @@ test("15-15", () => {
 
 })
 
+test("30-30", () => {
+    let app = new NewGame
+    app.reset()
+    app.AgetSC()
+    app.AgetSC()
+    app.BgetSC()
+    app.BgetSC()
+    let res = app.eco()
+    expect(res).toBe("30-30")
 
-test("45-15", () => {
+
+})
+
+
+test("40-15", () => {
     let app = new NewGame
     app.reset()
     app.AgetSC()
@@ -60,7 +78,23 @@ test("45-15", () => {
     app.AgetSC()
     app.BgetSC()
     let res = app.eco()
-    expect(res).toBe("45-15")
+    expect(res).toBe("40-15")
+
+
+})
+
+
+test("40-40", () => {
+    let app = new NewGame
+    app.reset()
+    app.AgetSC()
+    app.AgetSC()
+    app.AgetSC()
+    app.BgetSC()
+    app.BgetSC()
+    app.BgetSC()
+    let res = app.eco()
+    expect(res).toBe("deuce")
 
 
 })
